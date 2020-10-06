@@ -47,6 +47,7 @@ const secondMax = (arr) => {
   }
 };
 console.log(
+  "3.)",
   secondMax([2, 3, 4, 5]),
   secondMax([9, 2, 21, 21]),
   secondMax([4, 4, 4, 4]),
@@ -66,4 +67,4 @@ const fizzBuzz = (n) => {
       : "somthing went wrong";
 };
 
-console.log(fizzBuzz(21),fizzBuzz(18),fizzBuzz(45))
+console.log("4.)",fizzBuzz(21),fizzBuzz(18),fizzBuzz(45))
