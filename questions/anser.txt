@@ -1,0 +1,57 @@
+1.Explain the what's similar & difference between cookie / localStorage / sessionStorage.
+
+    จุดเหมือน 
+    cookie,localStorage,sessionStorage ทำหน้าที่เดียวกัน คือจัดเก็บข้อมฦูลไว้ฝั่ง client side
+    จุดต่าง
+    cookie : จะส่งhttp header เพื่อไปข่อ server ทำให้ทำงานได้ช้ากว่า และเก็บข้อมูลได้น้อยกว่า 
+    localStorage : การเก็บข้อมูลใส่ Local Storage ในรูปแบบ string แบบถาวร 
+    sessionStorage : การเก็บข้อมูลใส่ Session Storage ในรูปแบบ string  จะหายไปเมื่อปิดแท็บ หรือ เบราเซอร์
+
+-----------------------------------------------------------------------------------------------------------------------
+
+2. Today React have hooks. Do we still need a class component? If your answer is yes then which 
+    case that we still need to use class component.
+    
+    ไม่จำเป็นต้องใช้ class component แล้ว เพราะ hook แทบจะทำงานได้เหมือนกับ class component แต่บางกรณี 
+    class component ก็จะสะดวกกว่า  เช่นกรณีที่ funtion component จะใช้ ค่า state ร่วมกันหมด เหมือน
+    static variable ถ้าstate เปลี่ยนตัวนึง ทุกตัวเปลี่ยนหมด แต่คลาสใน js จะเหมือน instance variable  
+    ทำให้เราจัดการ state แยกได้ง่ายกว่า
+
+-----------------------------------------------------------------------------------------------------------------------
+
+3.Breifly describe how Virtual DOM works.
+
+    การจำข้อมูลไว้ในหน่วยความจำชั่วคราว เมื่อมีการเปลี่ยนแปลง เช่น user กดปุ่ม ทำให้หน้าเว็บเกิดการเปลี่ยนแปลง  React 
+    จะนำข้อมูลที่เปลี่ยนไปมาเทียบกับตัวที่เก็บไว้ในหน่วยความจำชั่วคราว แล้วเช็คดูว่ามีส่วนไหนที่ต้องสร้างใหม่ และจะทำการสร้างใหม่ 
+    แค่จุดที่มีการเปลี่ยนแปลงเท่านั้น ทำให้เว็บไซต์ render ได้รวดเร็ว
+
+-----------------------------------------------------------------------------------------------------------------------
+
+4. Consider this React's components tree
+Apps > ComponentA > ComponentB > ComponentC > ComponentD > ComponentE
+If we have a state at Apps component, and ComponentE component want to access that state value. 
+How do you implements this?
+
+    ใช้ redux เพื่อให้ component เก็บ state ไว้ที่ store กลาง เมื่อ component อื่น ไมว่าจะเป็น parent หรือ child
+    ต้องการเรียกใช้ state ก็ให้ store ส่ง state ไปให้ component นั้นๆ โดยตรง
+
+-----------------------------------------------------------------------------------------------------------------------
+
+5.What different between using relative / absolute / fixed to position the element.
+
+    relative:   เป็นคำสั่งให้ element แสดงผล ณ จุดที่ element นั้นอยู่ตั้งแต่แรก เหมือนไม่ได้ใช้คำสั่ง position แต่ว่าถ้าต้องการให้
+                element นี้ไปแทนที่ใน block  ก็สามารถใช้ relative ให้เข้าไปควบคุมการแสดงผลของ  block element นั้น ๆ ได้
+    absolute:   เป็นคำสั่งให้ element อยู่ในตำแหน่งที่ระบุได้ทันที โดยอ้างอิงจาก parentที่ครอบ
+    fixed:      เป็นคำสั่งให้ element อยู่ในตำแหน่งที่ระบุได้ทันที โดยอ้างอิงจากหน้าต่างของ brwoser 
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+6. Explain the different between using callback / Promise / async await. When to use and when not to.
+    ทั้ง 3 ตัวให้ผลลัพธ์การทำงานออกมาเหมือนกัน สิ่งที่ต่างกันคือ
+    callback:    เป็นการเขียน function ซ้อนในฟังก์ชันไปเรื่อยๆ  และต้องเขียนดักจับ error  ทีละจุดทำให้ทำงานยาก 
+                 ไม่เหมาะกับการเขียนหลายๆฟังก์ชันซ้อนกันไม่ค่อยเหมาะต่อการใช้งาน แต่สามารถใช้ได้ถ้าฟังก์ขันซ้อนกันไม่มาก 
+    promise :    เป็นการเรียกใช้ function then() ซึ่งก็คือ callback function แต่เขียนต่อจากฟังก์ชันเลยไม่ต้องซ้อน ทำให้อ่านง่ายขึ้น
+                 และดักจับ error ด้วย .catch แต่มีข้อเสียคือ ไม่รุ้ว่า error มาจาก promise ตัวไหน
+    async :      เป็นการประกาศให้ ฟังก์ชันนี้ทำงานแบบ synchronous ด้วยการประกาศไว้หน้าฟังก์ชัน และตามด้วยการประกาศ
+                 await ไว้หน้า async function ดักจับ error โดยใช้  try/catch : เหมาะสมต่อการใช้งาน
